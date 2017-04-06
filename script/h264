@@ -27,28 +27,28 @@ function thermal_protection
 function select_compression
 {
    PS3="# Select compression level:"
-   options=("1" "2" "3" "4" "5" "Quit")
+   options=("base 3.0" "main 3.0" "main 4.0" "high 4.1" "high 4.2" "Quit")
    select opt in "${options[@]}"
    do
       case $opt in
-         "1")
-            echo "1"           #TBD
+         "base 3.0")
+            echo " -profile:v baseline -level 3.0 "           #TBD
             break
             ;;
-         "2")
-            echo "2"           #TBD
+         "main 3.0")
+            echo " -profile:v main -level 3.1 "           #TBD
             break
             ;;
-         "3")
-            echo "3"           #TBD
+         "main 4.0")
+            echo " -profile:v main -level 4.0 "           #TBD
             break
             ;;
-         "4")
-            echo "4"           #TBD
+         "high 4.1")
+            echo " -profile:v high -level 4.1 "           #TBD
             break
             ;;
-         "5")
-            echo "5"           #TBD
+         "high 4.2")
+            echo " -profile:v high -level 4.2 "           #TBD
             break
             ;;
          "Quit")
@@ -141,10 +141,14 @@ do
    echo ""
 
 
+   set -o verbose
+
    ####
-   ffmpeg -i $SOURCE_FILE -threads 0 -pass 1 -map 0 -c copy    -c:v libx264 -preset slow -tune film -profile:v high -level 4.1    -an         -f matroska  -y /dev/null && \
-   ffmpeg -i $SOURCE_FILE -threads 0 -pass 2 -map 0 -c copy    -c:v libx264 -preset slow -tune film -profile:v high -level 4.1    -c:a ac3    -f matroska  -y $DEST_FILE
+   ffmpeg -i $SOURCE_FILE -threads 0 -pass 1 -map 0 -c copy  -c:v libx264 -preset veryslow -b:v 3M -tune film $COMPRESSION  -an       -f matroska  -y /dev/null && \
+   ffmpeg -i $SOURCE_FILE -threads 0 -pass 2 -map 0 -c copy  -c:v libx264 -preset veryslow -b:v 3M -tune film $COMPRESSION  -c:a ac3  -f matroska  -y $DEST_FILE
    ####
+
+   # -filter:v scale=720:-1
 
 
    thermal_protection
