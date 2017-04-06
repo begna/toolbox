@@ -1,9 +1,9 @@
 #!/bin/bash
 
-set -o verbose
+#set -o verbose
 
 
-function checkroot 
+function checkroot
 {
    if [ "$(whoami)" != "root" ]; then
       echo "Sorry, you are not root."
@@ -21,6 +21,8 @@ checkroot
 
 
 APT='apt'
+USER=$(logname)
+
 
 
 
@@ -32,17 +34,20 @@ echo ""
 
 
 # bash terminal
-#LINE="source ~/toolbox/toolbox.bash"
-#FILE="~/.bashrc"
-#grep -q "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
-#sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" 
+LINE="source ~/toolbox/toolbox.bash"
+FILE="/home/"$USER"/.bashrc"
+
+
+grep -q "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" "$FILE"
 
 
 
 ##################
 # ADD REPOSITORY #
 ##################
-   
+
+
 
 
 ##################
@@ -92,8 +97,8 @@ $APT install -y  ubuntu-wallpapers* # 9.10 -> ?
 
 
 # Applet
-#$APT install -y  indicator-applet 
-#$APT install -y  indicator-multiload 
+#$APT install -y  indicator-applet
+#$APT install -y  indicator-multiload
 #$APT install -y  netspeed
 
 
@@ -109,8 +114,8 @@ $APT install -y  mercurial
 $APT install -y  git
 
 
-# Networking 
-$APT install -y  filezilla 
+# Networking
+$APT install -y  filezilla
 $APT install -y  openssh-server
 $APT install -y  openssh-client
 $APT install -y  samba
@@ -119,7 +124,7 @@ $APT install -y  smbfs
 
 # Networking monitor tool
 $APT install -y  bmon
-$APT install -y  ifstat 
+$APT install -y  ifstat
 $APT install -y  nmap
 $APT install -y  zenmap
 
@@ -131,7 +136,7 @@ $APT install -y  flashplugin-installer
 
 
 # Audio
-$APT install -y  tagtool 
+$APT install -y  tagtool
 $APT install -y  decibel-audio-player
 $APT install -y  audacity
 $APT install -y  beep
