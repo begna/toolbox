@@ -32,8 +32,10 @@ echo ""
 
 
 # bash terminal
-echo "source ~/toolbox/toolbox.bash" >> ~/.bashrc
-sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" ~/.bashrc
+LINE="source ~/toolbox/toolbox.bash"
+FILE="~/.bashrc"
+grep -q "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" 
 
 
 
@@ -41,15 +43,6 @@ sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" ~/.bashrc
 # ADD REPOSITORY #
 ##################
    
-# Google Chrome repository
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
-
-# Spotify repository
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59
-sh -c 'echo "deb http://repository.spotify.com stable non-free" > /etc/apt/sources.list.d/spotify.list'
-
-
 
 
 ##################
