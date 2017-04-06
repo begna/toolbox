@@ -32,10 +32,10 @@ echo ""
 
 
 # bash terminal
-LINE="source ~/toolbox/toolbox.bash"
-FILE="~/.bashrc"
-grep -q "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
-sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" 
+#LINE="source ~/toolbox/toolbox.bash"
+#FILE="~/.bashrc"
+#grep -q "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+#sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" 
 
 
 
@@ -85,7 +85,7 @@ $APT install -y  tmux
 
 
 # Wallpaper
-$APT install -y  edgy-wallpapers			      # 6.10
+$APT install -y  edgy-wallpapers			   # 6.10
 $APT install -y  feisty-wallpapers			   # 7.04
 $APT install -y  gutsy-wallpapers			   # 7.10
 $APT install -y  ubuntu-wallpapers* # 9.10 -> ?
