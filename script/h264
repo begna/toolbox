@@ -142,13 +142,8 @@ do
 
 
    ####
-   # ffmpeg -i $SOURCE_FILE -c:v libx264 $COMPRESSION $DEST_FILE
-
-   # ffmpeg -i $SOURCE_FILE -c:v libx264 -b:v 1M -pass 1 -f matroska -y /dev/null && \
-   # ffmpeg -i $SOURCE_FILE -c:v libx264 -b:v 1M -pass 2 $DEST_FILE
-
-   # ffmpeg -y -i $SOURCE_FILE -c:v libx264 -preset medium -b:v 2600k -pass 1 -c:a aac -b:a 128k -f matroska -y /dev/null && \
-   # ffmpeg -i    $SOURCE_FILE -c:v libx264 -preset medium -b:v 2600k -pass 2 -c:a aac -b:a 128k sec_$DEST_FILE
+   ffmpeg -i $SOURCE_FILE -threads 0 -pass 1 -map 0 -c copy    -c:v libx264 -preset slow -tune film -profile:v high -level 4.1    -an         -f matroska  /dev/null && \
+   ffmpeg -i $SOURCE_FILE -threads 0 -pass 2 -map 0 -c copy    -c:v libx264 -preset slow -tune film -profile:v high -level 4.1    -c:a ac3    -f matroska  $DEST_FILE
    ####
 
 
