@@ -6,7 +6,7 @@ LIST_FILE=/tmp/list$RANDOM.txt
 EXT=.h264.mkv
 
 ARRAY=()
-DEG="\0260C"
+DEG="*C"  #"\0260C"
 
 
 
@@ -32,23 +32,23 @@ function select_compression
    do
       case $opt in
          "1")
-            echo ""           #TBD
+            echo "1"           #TBD
             break
             ;;
          "2")
-            echo ""           #TBD
+            echo "2"           #TBD
             break
             ;;
          "3")
-            echo ""           #TBD
+            echo "3"           #TBD
             break
             ;;
          "4")
-            echo ""           #TBD
+            echo "4"           #TBD
             break
             ;;
          "5")
-            echo ""           #TBD
+            echo "5"           #TBD
             break
             ;;
          "Quit")
@@ -109,26 +109,14 @@ fi
 
 
 
-# Select compress option, if not previously selected
-if [ -z "$2" ]; then
-   COMPRESSION=$(select_compression)
+# Select compress option
+COMPRESSION=$(select_compression)
 
-   if [ "$COMPRESSION" -eq 666 ]; then
-      echo "# Bye."
-      exit
-   fi   
-
-elif [ "$2" -gt 0 ] && [ "$2" -lt 5 ];  then
-   COMPRESSION=$2
-   
-else
-   COMPRESSION=$(select_compression)
-
-   if [ "$COMPRESSION" -eq 666 ]; then
-      echo "# Bye."
-      exit
-   fi
+if [ "$COMPRESSION" -eq 666 ]; then
+   echo "# Bye."
+   exit
 fi
+
 
 echo "# Compression level: " $COMPRESSION
 echo ""
@@ -157,10 +145,10 @@ do
    # ffmpeg -i $SOURCE_FILE -c:v libx264 $COMPRESSION $DEST_FILE
 
    # ffmpeg -i $SOURCE_FILE -c:v libx264 -b:v 1M -pass 1 -f matroska -y /dev/null && \
- 	 # ffmpeg -i $SOURCE_FILE -c:v libx264 -b:v 1M -pass 2 $DEST_FILE
+   # ffmpeg -i $SOURCE_FILE -c:v libx264 -b:v 1M -pass 2 $DEST_FILE
 
    # ffmpeg -y -i $SOURCE_FILE -c:v libx264 -preset medium -b:v 2600k -pass 1 -c:a aac -b:a 128k -f matroska -y /dev/null && \
- 	 # ffmpeg -i    $SOURCE_FILE -c:v libx264 -preset medium -b:v 2600k -pass 2 -c:a aac -b:a 128k sec_$DEST_FILE
+   # ffmpeg -i    $SOURCE_FILE -c:v libx264 -preset medium -b:v 2600k -pass 2 -c:a aac -b:a 128k sec_$DEST_FILE
    ####
 
 
