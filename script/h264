@@ -1,0 +1,169 @@
+#!/bin/bash
+
+SOURCE=$1
+
+LIST_FILE=/tmp/list$RANDOM.txt
+EXT=.h264.mkv
+
+ARRAY=()
+DEG="\0260C"
+
+
+
+function thermal_protection
+{
+   # Thermal protection
+   TEMP=$(cat /sys/class/thermal/thermal_zone0/temp)
+
+   echo -e "# CURRENT TEMPERATURE: "$(($TEMP/1000)) $DEG
+   while [ $TEMP -gt 64999 ]; do
+      sleep 60
+      echo -e "# CURRENT TEMPERATURE: "$(($TEMP/1000)) $DEG
+   done
+   echo ""
+}
+
+
+function select_compression
+{
+   PS3="# Select compression level:"
+   options=("1" "2" "3" "4" "5" "Quit")
+   select opt in "${options[@]}"
+   do
+      case $opt in
+         "1")
+            echo ""           #TBD
+            break
+            ;;
+         "2")
+            echo ""           #TBD
+            break
+            ;;
+         "3")
+            echo ""           #TBD
+            break
+            ;;
+         "4")
+            echo ""           #TBD
+            break
+            ;;
+         "5")
+            echo ""           #TBD
+            break
+            ;;
+         "Quit")
+            echo "666"
+            break
+            ;;
+         *) ;;
+       esac
+   done
+}
+
+
+
+
+
+# Check source
+if [[ -d $SOURCE ]]; then
+
+   SOURCE_PATH=$(cd ${SOURCE}; pwd)
+   SOURCE_BASE=$(basename $SOURCE_PATH)
+
+   DEST=$SOURCE_PATH"/../"$SOURCE_BASE"-h264"
+   mkdir -p $DEST
+   DEST_PATH=$(cd ${DEST}; pwd)
+
+   find $SOURCE_PATH -maxdepth 1 -type f -print | sort > $LIST_FILE
+
+   echo "# Source       $SOURCE_PATH"
+   echo "# Destination  $DEST_PATH"
+   echo ""
+   echo "# File in $SOURCE_BASE:"
+   cat $LIST_FILE
+   echo ""
+   echo ""
+
+   # List of files
+   while read -r line
+   do
+      ARRAY+=($line)
+   done < "$LIST_FILE"
+   TLEN=${#ARRAY[@]}
+
+   rm -r $LIST_FILE
+
+elif [[ -f $SOURCE ]]; then
+   echo "# Single input file: $SOURCE"
+
+   ARRAY+=$(readlink -e $SOURCE)
+   TLEN=1
+
+   DEST_PATH=$(cd $(dirname $SOURCE) && pwd)
+
+else
+   echo "# FATAL: argument is not valid: '$1'."
+   exit 1
+fi
+
+
+
+
+# Select compress option, if not previously selected
+if [ -z "$2" ]; then
+   COMPRESSION=$(select_compression)
+
+   if [ "$COMPRESSION" -eq 666 ]; then
+      echo "# Bye."
+      exit
+   fi   
+
+elif [ "$2" -gt 0 ] && [ "$2" -lt 5 ];  then
+   COMPRESSION=$2
+   
+else
+   COMPRESSION=$(select_compression)
+
+   if [ "$COMPRESSION" -eq 666 ]; then
+      echo "# Bye."
+      exit
+   fi
+fi
+
+echo "# Compression level: " $COMPRESSION
+echo ""
+echo ""
+
+
+
+# Convert!!!!
+for (( i=0; i<$TLEN; i++ ));
+do
+   FILE_PATH=${ARRAY[$i]}
+   FILE=$(basename $FILE_PATH)
+   FILE_EXT="${FILE##*.}"
+   FILE_NAME="${FILE%.*}"
+
+   SOURCE_FILE=$FILE_PATH
+   DEST_FILE=$DEST_PATH"/"$FILE_NAME$EXT
+   rm -f $DEST_FILE
+
+   echo " in "$SOURCE_FILE
+   echo "out "$DEST_FILE
+   echo ""
+
+
+   ####
+   # ffmpeg -i $SOURCE_FILE -c:v libx264 $COMPRESSION $DEST_FILE
+
+   # ffmpeg -i $SOURCE_FILE -c:v libx264 -b:v 1M -pass 1 -f matroska -y /dev/null && \
+ 	 # ffmpeg -i $SOURCE_FILE -c:v libx264 -b:v 1M -pass 2 $DEST_FILE
+
+   # ffmpeg -y -i $SOURCE_FILE -c:v libx264 -preset medium -b:v 2600k -pass 1 -c:a aac -b:a 128k -f matroska -y /dev/null && \
+ 	 # ffmpeg -i    $SOURCE_FILE -c:v libx264 -preset medium -b:v 2600k -pass 2 -c:a aac -b:a 128k sec_$DEST_FILE
+   ####
+
+
+   thermal_protection
+
+done
