@@ -26,29 +26,28 @@ function thermal_protection
 
 function select_compression
 {
-   PS3="# Select compression level:"
-   options=("base 3.0" "main 3.0" "main 4.0" "high 4.1" "high 4.2" "Quit")
+   options=("high 4.1 - 18" "high 4.1 - 21" "high 4.1 - 23" "high 4.1 - 26" "high 4.1 - 28" "Quit")
    select opt in "${options[@]}"
    do
       case $opt in
-         "base 3.0")
-            echo " -profile:v baseline -level 3.0 "           #TBD
+         "high 4.1 - 18")
+            echo " -profile:v high -level 4.1 -crf 18 "
             break
             ;;
-         "main 3.0")
-            echo " -profile:v main -level 3.1 "           #TBD
+         "high 4.1 - 21")
+            echo " -profile:v high -level 4.1 -crf 21 "
             break
             ;;
-         "main 4.0")
-            echo " -profile:v main -level 4.0 "           #TBD
+         "high 4.1 - 23")
+            echo " -profile:v high -level 4.1 -crf 23 "
             break
             ;;
-         "high 4.1")
-            echo " -profile:v high -level 4.1 "           #TBD
+         "high 4.1 - 26")
+            echo " -profile:v high -level 4.1 -crf 26 "
             break
             ;;
-         "high 4.2")
-            echo " -profile:v high -level 4.2 "           #TBD
+         "high 4.1 - 28")
+            echo " -profile:v high -level 4.1 -crf 28 "
             break
             ;;
          "Quit")
