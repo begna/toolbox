@@ -26,6 +26,7 @@ function thermal_protection
 
 function select_compression
 {
+   PS3="# Select compression level: "
    options=("high 4.1 - 18" "high 4.1 - 21" "high 4.1 - 23" "high 4.1 - 26" "high 4.1 - 28" "Quit")
    select opt in "${options[@]}"
    do
@@ -140,12 +141,14 @@ do
    echo ""
 
 
-   set -o verbose
+   set -o xtrace
 
    ####
-   ffmpeg -i $SOURCE_FILE -threads 0 -pass 1 -map 0 -c copy  -c:v libx264 -preset veryslow -b:v 3M -tune film $COMPRESSION  -an       -f matroska  -y /dev/null && \
-   ffmpeg -i $SOURCE_FILE -threads 0 -pass 2 -map 0 -c copy  -c:v libx264 -preset veryslow -b:v 3M -tune film $COMPRESSION  -c:a ac3  -f matroska  -y $DEST_FILE
+   ffmpeg -i $SOURCE_FILE -threads 0 -pass 1 -map 0 -c copy  -c:v libx264 -preset veryslow $COMPRESSION  -an       -f matroska  -y /dev/null && \
+   ffmpeg -i $SOURCE_FILE -threads 0 -pass 2 -map 0 -c copy  -c:v libx264 -preset veryslow $COMPRESSION  -c:a ac3  -f matroska  -y $DEST_FILE
    ####
+
+   set +o xtrace
 
    # -filter:v scale=720:-1
 
