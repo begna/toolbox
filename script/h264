@@ -27,7 +27,7 @@ function thermal_protection
 function select_compression
 {
    PS3="# Select compression level: "
-   options=("high 4.1 - 18" "high 4.1 - 21" "high 4.1 - 23" "high 4.1 - 26" "high 4.1 - 28" "Quit")
+   options=("high 4.1 - 18" "high 4.1 - 23" "high 4.1 - 28" "Quit")
    select opt in "${options[@]}"
    do
       case $opt in
@@ -35,16 +35,8 @@ function select_compression
             echo " -profile:v high -level 4.1 -crf 18 "
             break
             ;;
-         "high 4.1 - 21")
-            echo " -profile:v high -level 4.1 -crf 21 "
-            break
-            ;;
          "high 4.1 - 23")
             echo " -profile:v high -level 4.1 -crf 23 "
-            break
-            ;;
-         "high 4.1 - 26")
-            echo " -profile:v high -level 4.1 -crf 26 "
             break
             ;;
          "high 4.1 - 28")
@@ -144,9 +136,13 @@ do
    set -o xtrace
 
    ####
-   ffmpeg -i $SOURCE_FILE -threads 0 -pass 1 -map 0 -c copy  -c:v libx264 -preset veryslow $COMPRESSION  -an       -f matroska  -y /dev/null && \
-   ffmpeg -i $SOURCE_FILE -threads 0 -pass 2 -map 0 -c copy  -c:v libx264 -preset veryslow $COMPRESSION  -c:a ac3  -f matroska  -y $DEST_FILE
+#  ffmpeg -i $SOURCE_FILE   -c:v libx264 -preset veryslow $COMPRESSION -threads 0 -pass 1   -an        -f matroska  -y /dev/null && \
+#  ffmpeg -i $SOURCE_FILE   -c:v libx264 -preset veryslow $COMPRESSION -threads 0 -pass 2   -c:a ac3   -f matroska  -y $DEST_FILE
    ####
+   ffmpeg -i $SOURCE_FILE   -c:v libx264 -preset veryslow $COMPRESSION -threads 0           -c:a ac3 -b:a 128k  -f matroska  -y $DEST_FILE
+   ####
+
+
 
    set +o xtrace
 
