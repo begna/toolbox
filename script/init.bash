@@ -25,8 +25,7 @@ checkroot
 
 
 # Check if the script was already launched
-if [-e FLAG]
-then
+if [ -e $FLAG ]; then
   echo "Script already lunched."
   exit 1
 fi
