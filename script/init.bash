@@ -128,22 +128,21 @@ sudo apt-get install -y byobu
 
 
 # Desktop GUI
-$APT install -y  gnome-session-fallback
-$APT install -y  gnome-shell
-$APT install -y  twm
-$APT install -y  fluxbox
+#$APT install -y  gnome-session-fallback
+#$APT install -y  gnome-shell
+#$APT install -y  twm
+#$APT install -y  fluxbox
 
 
 # Terminal
-$APT install -y  byobu
-$APT install -y  tmux
+#$APT install -y  tmux
 
 
 # Wallpaper
-$APT install -y  edgy-wallpapers			   # 6.10
-$APT install -y  feisty-wallpapers			   # 7.04
-$APT install -y  gutsy-wallpapers			   # 7.10
-$APT install -y  ubuntu-wallpapers* # 9.10 -> ?
+#$APT install -y  edgy-wallpapers			   # 6.10
+#$APT install -y  feisty-wallpapers			   # 7.04
+#$APT install -y  gutsy-wallpapers			   # 7.10
+#$APT install -y  ubuntu-wallpapers* # 9.10 -> ?
 
 
 # Applet
@@ -153,100 +152,100 @@ $APT install -y  ubuntu-wallpapers* # 9.10 -> ?
 
 
 # Dev
-$APT install -y  build-essential
-$APT install -y  ghex
+#$APT install -y  build-essential
+#$APT install -y  ghex
 
-$APT install -y  gedit
-$APT install -y  geany
-$APT install -y  codeblocks
-$APT install -y  meld
+#$APT install -y  gedit
+#$APT install -y  geany
+#$APT install -y  codeblocks
+#$APT install -y  meld
 
-$APT install -y  eclipse
-$APT install -y  mercurial
-$APT install -y  git
+#$APT install -y  eclipse
+#$APT install -y  mercurial
+#$APT install -y  git
 
 
 # Networking
-$APT install -y  filezilla
-$APT install -y  openssh-server
-$APT install -y  openssh-client
-$APT install -y  samba
-$APT install -y  smbfs
+#$APT install -y  filezilla
+#$APT install -y  openssh-server
+#$APT install -y  openssh-client
+#$APT install -y  samba
+#$APT install -y  smbfs
 
 
 # Networking monitor tool
-$APT install -y  bmon
-$APT install -y  ifstat
-$APT install -y  nmap
-$APT install -y  zenmap
+#$APT install -y  bmon
+#$APT install -y  ifstat
+#$APT install -y  nmap
+#$APT install -y  zenmap
 
 
 # Internet browser
-$APT install -y  chromium-browser
-$APT install -y  google-chrome-stable
-$APT install -y  flashplugin-installer
+#$APT install -y  chromium-browser
+#$APT install -y  google-chrome-stable
+#$APT install -y  flashplugin-installer
 
 
 # Audio
-$APT install -y  tagtool
-$APT install -y  decibel-audio-player
-$APT install -y  audacity
-$APT install -y  beep
+#$APT install -y  tagtool
+#$APT install -y  decibel-audio-player
+#$APT install -y  audacity
+#$APT install -y  beep
 
 
 # Video
-$APT install -y  avidemux
-$APT install -y  vlc
-$APT install -y  ffmpeg
+#$APT install -y  avidemux
+#$APT install -y  vlc
+#$APT install -y  ffmpeg
 
 # Pictures
-$APT install -y  nautilus-image-converter 
-$APT install -y  gthumb
-$APT install -y  gimp
+#$APT install -y  nautilus-image-converter 
+#$APT install -y  gthumb
+#$APT install -y  gimp
 
 
 # Office
-$APT install -y  pdfshuffler 
-$APT install -y  libreoffice-pdfimport
+#$APT install -y  pdfshuffler 
+#$APT install -y  libreoffice-pdfimport
 
 
 # Others
-$APT install -y  beneath-a-steel-sky
-$APT install -y  scummvm
+#$APT install -y  beneath-a-steel-sky
+#$APT install -y  scummvm
 
 
 # Emulators 
-$APT install -y  dosbox
-$APT install -y  wine
+#$APT install -y  dosbox
+#$APT install -y  wine
 
 
 # Apt-get stuff
-$APT install -y  gui-apt-key
-$APT install -y  deborphan
+#$APT install -y  gui-apt-key
+#$APT install -y  deborphan
 
 
 # System monitor tool
-$APT install -y  htop
-$APT install -y  hardinfo
-$APT install -y  smartmontools
+#$APT install -y  htop
+#$APT install -y  hardinfo
+#$APT install -y  smartmontools
 
 
 # System 
-$APT install -y  gprename
-$APT install -y  glmark2
-$APT install -y  xauth
-$APT install -y  p7zip-full
-$APT install -y  unrar
-$APT install -y  gparted
-$APT install -y  gnome-commander
-$APT install -y  gnome-search-tool
-$APT install -y  virtualbox-fuse
-$APT install -y  cryptsetup-bin
-$APT install -y  nemo
+#$APT install -y  gprename
+#$APT install -y  glmark2
+#$APT install -y  xauth
+#$APT install -y  p7zip-full
+#$APT install -y  unrar
+#$APT install -y  gparted
+#$APT install -y  gnome-commander
+#$APT install -y  gnome-search-tool
+#$APT install -y  virtualbox-fuse
+#$APT install -y  cryptsetup-bin
+#$APT install -y  nemo
 #$APT install -y  compizconfig-settings-manager
 
-$APT install -y  ubuntu-restricted-addons
-$APT install -y  ubuntu-restricted-extras 
+#$APT install -y  ubuntu-restricted-addons
+#$APT install -y  ubuntu-restricted-extras 
 
 
 
@@ -267,4 +266,4 @@ $APT moo
 
 
 
-touch 
+touch $FLAG
