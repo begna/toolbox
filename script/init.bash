@@ -1,6 +1,12 @@
 #!/bin/bash
 
+APT='apt'
+USER=$(logname)
+FLAG="/home/"$USER"/.toolbox"
+
+
 #set -o verbose
+
 
 
 function checkroot
@@ -15,32 +21,71 @@ function checkroot
    fi
 }
 
-
 checkroot
 
 
+# Check if the script was already launched
+if [-e FLAG]
+then
+  echo "Script already lunched."
+  exit 1
+fi
 
-APT='apt'
-USER=$(logname)
+
+
+
+
+#########
+# START #
+#########
+
+PS3='Select: '
+options=("basic" "standard-ubuntu" "standard-raspbian" "QUIT")
+select opt in "${options[@]}"
+do
+   case $opt in
+         "basic")
+            echo "-- basic --"
+            echo ""
+            break
+            ;;
+         "standard-ubuntu")
+            echo "-- standard ubuntu --"
+            echo ""
+            break
+            ;;
+         "standard-raspbian")
+            echo "-- standard raspbian --"
+            echo ""
+            break
+            ;;
+         "QUIT")
+            echo "bye."
+            echo ""
+            exit 0
+            ;;
+         *)
+            echo "Not a valid option"
+            ;;
+   esac
+done
 
 
 
 
 
+echo ""
 echo "***************"
 echo "* init script *"
 echo "***************"
 echo ""
 
-
 # bash terminal
 LINE="source ~/toolbox/toolbox.bash"
 FILE="/home/"$USER"/.bashrc"
 
-
 grep -q "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" "$FILE"
-
 
 
 ##################
@@ -48,15 +93,11 @@ sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" "$FILE"
 ##################
 
 
-
-
 ##################
 # APT-GET UPDATE #
 ##################
 
 $APT update
-
-
 
 
 #################
@@ -76,6 +117,15 @@ $APT dist-upgrade -y
 ###################
 # APT-GET INSTALL #
 ###################
+
+# Mandatory
+sudo apt-get install -y byobu
+
+
+
+
+
+
 
 # Desktop GUI
 $APT install -y  gnome-session-fallback
@@ -104,11 +154,13 @@ $APT install -y  ubuntu-wallpapers* # 9.10 -> ?
 
 # Dev
 $APT install -y  build-essential
+$APT install -y  ghex
+
 $APT install -y  gedit
 $APT install -y  geany
 $APT install -y  codeblocks
 $APT install -y  meld
-$APT install -y  ghex
+
 $APT install -y  eclipse
 $APT install -y  mercurial
 $APT install -y  git
@@ -213,3 +265,6 @@ $APT autoremove -y
 
 $APT moo
 
+
+
+touch 
