@@ -231,3 +231,4 @@ $APT moo
 
 
 touch $FLAG
+chown $USER $FLAG
