@@ -87,44 +87,27 @@ grep -q "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" "$FILE"
 
 
-##################
-# ADD REPOSITORY #
-##################
-
-
-##################
-# APT-GET UPDATE #
-##################
+#################
+# APT-GET basic #
+#################
 
 $APT update
-
-
-#################
-# APT-GET PURGE #
-#################
-
-# Purge bad stuff
-
-
-########################
-# APT-GET DIST-UPGRADE #
-########################
-
 $APT dist-upgrade -y
 
-
-###################
-# APT-GET INSTALL #
-###################
-
-# Mandatory
-sudo apt-get install -y byobu
-
-
-
+$APT install -y  byobu
+$APT install -y  htop
+$APT install -y  build-essential
+$APT install -y  ghex
+$APT install -y  bmon
+$APT install -y  git
+$APT install -y  nmap
+$APT install -y  checkinstall debfoster deborphan cruft localepurge    # http://guide.debianizzati.org/index.php/Pulire_Debian
 
 
 
+####################
+# APT-GET standard #
+####################
 
 # Desktop GUI
 #$APT install -y  gnome-session-fallback
@@ -132,10 +115,8 @@ sudo apt-get install -y byobu
 #$APT install -y  twm
 #$APT install -y  fluxbox
 
-
 # Terminal
 #$APT install -y  tmux
-
 
 # Wallpaper
 #$APT install -y  edgy-wallpapers			   # 6.10
@@ -143,26 +124,18 @@ sudo apt-get install -y byobu
 #$APT install -y  gutsy-wallpapers			   # 7.10
 #$APT install -y  ubuntu-wallpapers* # 9.10 -> ?
 
-
 # Applet
 #$APT install -y  indicator-applet
 #$APT install -y  indicator-multiload
 #$APT install -y  netspeed
 
-
 # Dev
-#$APT install -y  build-essential
-#$APT install -y  ghex
-
 #$APT install -y  gedit
 #$APT install -y  geany
 #$APT install -y  codeblocks
 #$APT install -y  meld
-
 #$APT install -y  eclipse
 #$APT install -y  mercurial
-#$APT install -y  git
-
 
 # Networking
 #$APT install -y  filezilla
@@ -171,26 +144,20 @@ sudo apt-get install -y byobu
 #$APT install -y  samba
 #$APT install -y  smbfs
 
-
 # Networking monitor tool
-#$APT install -y  bmon
 #$APT install -y  ifstat
-#$APT install -y  nmap
 #$APT install -y  zenmap
-
 
 # Internet browser
 #$APT install -y  chromium-browser
 #$APT install -y  google-chrome-stable
 #$APT install -y  flashplugin-installer
 
-
 # Audio
 #$APT install -y  tagtool
 #$APT install -y  decibel-audio-player
 #$APT install -y  audacity
 #$APT install -y  beep
-
 
 # Video
 #$APT install -y  avidemux
@@ -202,29 +169,23 @@ sudo apt-get install -y byobu
 #$APT install -y  gthumb
 #$APT install -y  gimp
 
-
 # Office
 #$APT install -y  pdfshuffler 
 #$APT install -y  libreoffice-pdfimport
-
 
 # Others
 #$APT install -y  beneath-a-steel-sky
 #$APT install -y  scummvm
 
-
 # Emulators 
 #$APT install -y  dosbox
 #$APT install -y  wine
 
-
 # Apt-get stuff
 #$APT install -y  gui-apt-key
-#$APT install -y  deborphan
-
-
+#
 # System monitor tool
-#$APT install -y  htop
+#
 #$APT install -y  hardinfo
 #$APT install -y  smartmontools
 
@@ -248,13 +209,17 @@ sudo apt-get install -y byobu
 
 
 
+
+
+
+
+
 #################################
 # APT-GET AUTOCLEAN - AUTOCLEAN #
 #################################
 
 $APT autoclean -y
 $APT autoremove -y
-
 
 
 #######
