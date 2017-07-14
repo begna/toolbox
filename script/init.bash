@@ -102,12 +102,23 @@ $APT install -y  bmon
 $APT install -y  git
 $APT install -y  nmap
 $APT install -y  checkinstall debfoster deborphan cruft localepurge    # http://guide.debianizzati.org/index.php/Pulire_Debian
-
+$APT install -y  lynx
 
 
 ####################
-# APT-GET standard #
+# APT-GET raspbian #
 ####################
+
+if [ $opt == "standard-raspbian" ]
+   then
+  	$APT install -y  shellinabox 
+	$APT install -y  transmission-daemon
+fi
+
+
+
+
+
 
 # Desktop GUI
 #$APT install -y  gnome-session-fallback
