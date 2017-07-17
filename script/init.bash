@@ -104,6 +104,11 @@ $APT install -y  nmap
 $APT install -y  checkinstall debfoster deborphan cruft # http://guide.debianizzati.org/index.php/Pulire_Debian
 $APT install -y  lynx
 $APT install -y  mediainfo
+$APT install -y  p7zip-full
+$APT install -y  unrar
+$APT install -y  gparted
+$APT install -y  gnome-commander
+
 
 ####################
 # APT-GET raspbian #
