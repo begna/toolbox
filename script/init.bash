@@ -101,9 +101,9 @@ $APT install -y  ghex
 $APT install -y  bmon
 $APT install -y  git
 $APT install -y  nmap
-$APT install -y  checkinstall debfoster deborphan cruft localepurge    # http://guide.debianizzati.org/index.php/Pulire_Debian
+$APT install -y  checkinstall debfoster deborphan cruft # http://guide.debianizzati.org/index.php/Pulire_Debian
 $APT install -y  lynx
-
+$APT install -y  mediainfo
 
 ####################
 # APT-GET raspbian #
