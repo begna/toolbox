@@ -3,7 +3,7 @@
 SOURCE=$1
 
 LIST_FILE=/tmp/list$RANDOM.txt
-EXT=.h264.mkv
+EXT=.x264.mkv
 
 ARRAY=()
 DEG="*C"  #"\0260C"
@@ -139,7 +139,7 @@ do
 #  ffmpeg -i $SOURCE_FILE   -c:v libx264 -preset veryslow $COMPRESSION -threads 0 -pass 1   -an        -f matroska  -y /dev/null && \
 #  ffmpeg -i $SOURCE_FILE   -c:v libx264 -preset veryslow $COMPRESSION -threads 0 -pass 2   -c:a ac3   -f matroska  -y $DEST_FILE
    ####
-   ffmpeg -i $SOURCE_FILE   -c:v libx264 -preset veryslow $COMPRESSION -threads 0           -c:a ac3 -b:a 128k  -f matroska  -y $DEST_FILE
+   ffmpeg -i $SOURCE_FILE   -c:v libx264 -preset medium $COMPRESSION -threads 0           -c:a ac3 -b:a 128k  -f matroska  -y $DEST_FILE
    ####
 
 
